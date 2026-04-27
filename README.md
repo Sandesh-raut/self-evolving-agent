@@ -1,14 +1,28 @@
 # Self-Evolving AI Agent
 
-A comprehensive, **runnable** proof-of-concept covering 11 core GenAI concepts — from tokenization to a self-evolving agent swarm that rewrites its own prompts after every failure.
+This is the codebase behind my article: [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official).
 
-Built as a portfolio piece to demonstrate deep, hands-on understanding of the full AI/ML stack. Every module produces real output, benchmarks, and comparison tables when you run it.
+I wanted to go deeper than just importing frameworks. I wanted to understand — at the lowest level — what happens when you give software the ability to rewrite itself. So I built every piece from scratch: tokenizers, vector stores, RAG pipelines, a reasoning engine, and finally a multi-agent swarm where agents mutate their own prompts based on structured failure analysis.
 
-> *"There's a moment in every serious GenAI project where you stop being the architect and start being the observer."*
->
-> — From the companion article: [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official)
+Every module here is runnable. Not slides, not documentation — actual code that produces output, benchmarks, and comparison tables when you run it.
+
+```bash
+python run_all.py
+```
+
+That's it. Zero dependencies needed. 11 modules, 86 benchmarks, under 4 seconds.
 
 ---
+
+## Why I Built This
+
+After 17+ years across PHP, Rails, Node, Python, and AWS — and after spending serious time with CrewAI, LangGraph, and the HuggingFace ecosystem — I realised frameworks are designed for static agents. You define roles, tools, prompts, and they execute. If something fails, you debug. You tweak. You redeploy.
+
+That's not evolution. That's maintenance.
+
+I wanted agents that introspect on their own failures and mutate their behaviour. The moment I wanted that, every framework became a constraint. So I built the machinery myself to understand what's actually happening under the hood.
+
+This repo is the result — a ground-up implementation of every major GenAI concept, culminating in a self-evolving agent swarm.
 
 ## Architecture
 
@@ -42,53 +56,49 @@ Built as a portfolio piece to demonstrate deep, hands-on understanding of the fu
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## What's Covered
+## What's Inside
 
-| # | Module | GenAI Concept | Key Implementations |
-|---|--------|--------------|---------------------|
-| 1 | Tokenization | Text encoding | BPE from scratch, HuggingFace tokenizer comparison, multi-language analysis |
-| 2 | Embeddings | Vector representations | Sentence embeddings, cosine similarity, vector DB, K-Means clustering, embedding arithmetic |
-| 3 | RAG Pipeline | Retrieval-augmented generation | Document chunking, semantic retrieval, generation, faithfulness scoring, chunk-size ablation |
-| 4 | Prompt Engineering | Prompt design patterns | Zero-shot, few-shot, chain-of-thought, persona, ReAct, structured output, token economics |
-| 5 | Reasoning | Structured thinking | Chain-of-thought, tree-of-thought, self-verification, multi-step logical deduction |
-| 6 | Agent Architecture | Agentic systems | Tool registry, planning engine, 3-tier memory (working/episodic/semantic), ReAct loop |
-| 7 | Self-Evolution | Self-improvement | Strategy mutation, fitness evaluation, genetic selection, convergence analysis |
-| 8 | Multi-Modal | Text + image | Synthetic image generation, feature extraction, text-image alignment, cross-modal retrieval, fusion strategies |
-| 9 | Fine-Tuning | Model training | From-scratch classifier, training loop, loss curves, checkpoints, precision/recall/F1, LR sweep |
-| 10 | Evaluation | Benchmarking | BLEU, ROUGE-L, perplexity, latency/throughput benchmarks, statistical A/B testing (Cohen's d) |
-| 11 | **Agent Swarm** | **Self-evolving multi-agent** | **6-agent research swarm, evaluator ring, mutation engine, Git-style prompt tracking, reward-hacking detection, prompt distillation** |
+| # | Module | What It Does |
+|---|--------|-------------|
+| 1 | **Tokenization** | BPE tokenizer built from scratch, then compared against BERT, GPT-2, and T5 tokenizers. Multi-language analysis, compression ratios. |
+| 2 | **Embeddings** | In-memory vector store with cosine similarity search, K-Means clustering, embedding arithmetic (the classic king - man + woman test). |
+| 3 | **RAG Pipeline** | Full retrieve-and-generate pipeline with document chunking, semantic retrieval, faithfulness scoring, and a chunk-size ablation study. |
+| 4 | **Prompt Engineering** | Seven prompt patterns implemented as reusable templates — zero-shot, few-shot, CoT, persona, ReAct, structured output. Includes token economics analysis. |
+| 5 | **Reasoning** | Chain-of-thought with confidence decay, tree-of-thought with branch selection, self-verification against evidence, and a rule-based deduction engine. |
+| 6 | **Agent Architecture** | Complete agent with tool registry, task planner, and a 3-tier memory system (working/episodic/semantic) modelled on cognitive science. ReAct execution loop. |
+| 7 | **Self-Evolution** | Genetic strategy evolution — population of strategies that mutate, compete on fitness, and converge. Tracks improvement over 10 generations. |
+| 8 | **Multi-Modal** | Pure-Python PNG generation, image feature extraction, text-image alignment scoring, cross-modal retrieval, and three fusion strategies (early, late, attention-weighted). |
+| 9 | **Fine-Tuning** | From-scratch text classifier with numerical gradient descent. Full training loop with loss curves, checkpoint management, confusion matrix, per-class F1, and a learning rate sweep. |
+| 10 | **Evaluation** | BLEU, ROUGE-L, perplexity. Latency and throughput benchmarks with P95/P99. Statistical A/B testing with confidence intervals and Cohen's d effect size. |
+| 11 | **Agent Swarm** | The main event. 6-agent research synthesis swarm (Scout, Reader, Critic, Synthesiser, Formatter, Auditor) with evaluator ring, mutation engine, Git-style prompt versioning, prompt distillation, and reward-hacking detection. This is the architecture from my article. |
 
 ## Quick Start
 
 ```bash
-# Clone
 git clone https://github.com/sandesh37/self-evolving-agent.git
 cd self-evolving-agent
 
-# Run everything (zero dependencies needed — pure Python fallbacks for all modules)
+# Run everything — no pip install needed
 python run_all.py
 
-# Run with HuggingFace models for enhanced output
+# Want better embeddings and generation? Install the optional deps
 pip install -r requirements.txt
 python run_all.py
 
-# Run a single module
-python run_all.py --module 11    # Just the agent swarm
-python run_all.py --module 1     # Just tokenization
+# Run just the swarm module
+python run_all.py --module 11
 
-# Fast mode (skip large model downloads)
-python run_all.py --fast
+# Run any single module (1-11)
+python run_all.py --module 9    # just fine-tuning
 ```
 
 ## Sample Output
 
 ```
-╔══════════════════════════════════════════════════════════════════╗
-║            🧠  SELF-EVOLVING AI AGENT  🧠                       ║
-║            Covering 11 Core AI/ML Concepts                      ║
-╚══════════════════════════════════════════════════════════════════╝
-
-▶▶▶ Running Module 11/11: Agent Swarm
+══════════════════════════════════════════════════════════════════
+  SELF-EVOLVING AGENT SWARM
+  3-layer architecture: Task Swarm → Evaluator Ring → Mutation Engine
+══════════════════════════════════════════════════════════════════
 
   Research Swarm Initialized (6 agents):
     Scout          role=source_discovery      tools=['search', 'fetch_url']
@@ -99,90 +109,92 @@ python run_all.py --fast
     Auditor        role=quality_assurance     tools=['verify_claims', 'check_citations']
 
   Evolution Progress (15 cycles):
-  Cycle  Avg Score  Mutations   Alerts  Progress
-  ─────────────────────────────────────────────
-      1     0.3842          0        0  ███████
-      5     0.4915          3        0  █████████
-     10     0.5234          2        0  ██████████
-     15     0.5512          1        1  ███████████ ⚠
+   Cycle  Avg Score  Mutations   Alerts  Progress
+  ─────────────────────────────────────────────────
+       1     0.6607          0        0  █████████████
+       5     0.6347          1        0  ████████████
+      10     0.6345          1        0  ████████████
+      15     0.6350          1        0  ████████████
 
-  Reward Hacking Detection:
-    Auditor        ⚠ DETECTED
-      Reason: Auditor always agrees — possible rubber-stamping
-      Fix: Add adversarial test cases or contrastive evaluation
+  Prompt Bloat Analysis:
+  Agent           Initial  Current   Bloat   Gens
+  ────────────────────────────────────────────────
+  Scout                36       36   1.00x      0
+  Auditor              28      268   9.57x     14
 
-═══════════════════════════════════════════════════════════════════
+  ═══════════════════════════════════════════════════════
   FINAL PERFORMANCE REPORT
-═══════════════════════════════════════════════════════════════════
+  ═══════════════════════════════════════════════════════
   Modules Run:       11
-  Total Benchmarks:  85+
-  Total Time:        <30s (pure Python) | ~2min (with HF models)
+  Total Benchmarks:  86
+  Total Time:        3.64s
 ```
 
 ## Design Decisions
 
-**Zero required dependencies.** Every module runs with pure Python. HuggingFace models are optional enhancements — the system gracefully falls back to TF-IDF embeddings, keyword classifiers, and extractive generation when they're unavailable.
+**No required dependencies.** Every module runs on pure Python. The embeddings module falls back to TF-IDF when sentence-transformers isn't installed. The RAG module falls back to extractive answers when there's no generative model. I did this deliberately — I wanted anyone to clone and run without fighting with CUDA or torch versions.
 
-**Benchmarks baked in.** Every operation is timed. Every module prints comparison tables. The `outputs/benchmark_report.json` captures everything for later analysis.
+**From-scratch first, then compare.** I implemented BPE, cosine similarity search, K-Means, a training loop with numerical gradients, and the entire reasoning engine from scratch. Then I benchmark them against their HuggingFace/production equivalents. Understanding what's inside the abstractions is the whole point.
 
-**From-scratch implementations alongside production tools.** The BPE tokenizer, vector store, K-Means clustering, text classifier, and reasoning engine are all implemented from scratch — then compared with their HuggingFace equivalents. This demonstrates understanding of what's *inside* the abstractions.
+**Benchmarks are not optional.** Every operation is timed. Every module prints comparison tables. The full run dumps `outputs/benchmark_report.json` with structured metrics. If you can't measure it, you can't evolve it — that principle applies to the code itself.
 
-**The swarm module mirrors a real system.** The 3-layer architecture (Task Swarm → Evaluator Ring → Mutation Engine) is the same pattern described in the companion article, implementing prompt mutation, Git-style version tracking, prompt distillation, and reward-hacking detection.
+**The swarm mirrors real architecture.** Module 11 implements the 3-layer system I described in the article. The mutation engine rewrites agent prompts based on multi-axis failure scoring. Every prompt version gets a hash and a diff. The system detects reward hacking (the Auditor rubber-stamping problem I ran into at 2 AM). It's not a toy — it's the same pattern, just without $180 in API spend.
+
+## How the Self-Evolution Works
+
+The core loop that drives Module 7 (strategy evolution) and Module 11 (agent swarm):
+
+**Execute** → each agent runs its task with its current prompt and tools.
+
+**Evaluate** → the evaluator ring scores output across six axes: accuracy, completeness, information density, format compliance, latency, token cost. No prose, just numbers.
+
+**Mutate** → the mutation engine identifies the weakest axis for underperforming agents and proposes a targeted prompt modification. A safety validator rejects anything that looks like prompt injection.
+
+**Track** → every mutation gets a Git-style hash, diff, and parent reference. You can trace the full lineage of any agent's prompt.
+
+**Guard** → reward-hacking detection flags agents that game the evaluator (like an auditor that always agrees because "consistency" scores well).
+
+## From Scratch vs Production
+
+| What I Built | What It Replaces |
+|-------------|-----------------|
+| BPE tokenizer | BERT/GPT-2/T5 tokenizers |
+| TF-IDF vector store | ChromaDB, Pinecone |
+| Cosine search with K-Means | FAISS, Annoy |
+| Numerical gradient classifier | PyTorch autograd |
+| Chunker + retriever + generator | LangChain, LlamaIndex |
+| ReAct agent with tool registry | CrewAI, LangGraph |
+| Genetic mutation engine | EvoAgentX, A-Evolve |
 
 ## Project Structure
 
 ```
 self-evolving-agent/
-├── run_all.py                    # Master orchestrator
-├── requirements.txt              # Optional deps (torch, transformers)
-├── README.md
+├── run_all.py                    # orchestrator — run everything or pick a module
+├── requirements.txt              # optional (torch, transformers, sentence-transformers)
 ├── modules/
-│   ├── base.py                   # BaseModule + BenchmarkResult
-│   ├── tokenization.py           # Module 1: BPE, HF tokenizers
-│   ├── embeddings.py             # Module 2: Embeddings, vector search
-│   ├── rag_pipeline.py           # Module 3: RAG with evaluation
-│   ├── prompt_engineering.py     # Module 4: Prompt patterns
-│   ├── reasoning.py              # Module 5: CoT, ToT, verification
-│   ├── agent_architecture.py     # Module 6: Agent + tools + memory
-│   ├── self_evolution.py         # Module 7: Genetic strategy evolution
-│   ├── multimodal.py             # Module 8: Text-image processing
-│   ├── finetuning.py             # Module 9: Training loop + metrics
-│   ├── evaluation.py             # Module 10: Benchmarking framework
-│   └── agent_swarm.py            # Module 11: Self-evolving agent swarm
-├── outputs/                      # Generated artifacts + benchmark report
-└── data/                         # Sample data files
+│   ├── base.py                   # BaseModule class + benchmarking infrastructure
+│   ├── tokenization.py           # BPE from scratch + HF tokenizer comparison
+│   ├── embeddings.py             # vector store, clustering, semantic search
+│   ├── rag_pipeline.py           # chunking → retrieval → generation → evaluation
+│   ├── prompt_engineering.py     # 7 prompt patterns as reusable templates
+│   ├── reasoning.py              # CoT, ToT, self-verification, deduction
+│   ├── agent_architecture.py     # tools + planning + 3-tier memory + ReAct
+│   ├── self_evolution.py         # genetic strategy mutation + fitness selection
+│   ├── multimodal.py             # text-image alignment + cross-modal retrieval
+│   ├── finetuning.py             # training loop + loss curves + LR sweep
+│   ├── evaluation.py             # BLEU, ROUGE-L, perplexity, latency, stats
+│   └── agent_swarm.py            # the full self-evolving swarm from the article
+├── outputs/                      # benchmark reports + generated artifacts
+└── data/                         # sample data
 ```
 
-## Tech Stack
+## Tech
 
-- **Python 3.10+** — zero external dependencies for core functionality
-- **PyTorch** (optional) — tensor operations for model modules
-- **HuggingFace Transformers** (optional) — pre-trained models (DistilBERT, DistilGPT2)
-- **Sentence-Transformers** (optional) — text embeddings (all-MiniLM-L6-v2)
-
-## Key Concepts Demonstrated
-
-### Self-Evolution (The Core Innovation)
-The system implements a feedback loop where agents improve autonomously:
-
-1. **Execute** — Agents run their assigned tasks
-2. **Evaluate** — Multi-axis scoring (accuracy, completeness, information density, latency, cost)
-3. **Mutate** — Underperformers get prompt rewrites targeting their weakest axis
-4. **Track** — Every mutation is Git-tagged with hash, diff, and parent reference
-5. **Guard** — Safety validation rejects prompt injections; reward-hacking detection flags exploitative agents
-
-### From-Scratch vs Production
-| Component | From Scratch | Production Equivalent |
-|-----------|-------------|----------------------|
-| Tokenizer | BPE implementation | BERT/GPT-2/T5 tokenizers |
-| Embeddings | TF-IDF vectors | Sentence-Transformers |
-| Vector DB | In-memory cosine search | ChromaDB / Pinecone |
-| Classifier | Numerical gradient descent | PyTorch autograd |
-| RAG | Custom chunker + retriever | LangChain / LlamaIndex |
-| Agent | ReAct loop with tool registry | CrewAI / LangGraph |
-| Evolution | Genetic mutation engine | EvoAgentX / A-Evolve |
+Python 3.10+. Optional: PyTorch, HuggingFace Transformers (DistilBERT, DistilGPT2), Sentence-Transformers (all-MiniLM-L6-v2). Everything degrades gracefully without them.
 
 ---
 
-**Author:** Sandesh Raut — Tech Lead, GenAI & Platform Engineering
-**Article:** [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official)
+**Sandesh Raut** — Tech Lead | GenAI & Platform Engineering | 17+ years across startups and enterprise
+
+[Medium](https://medium.com/@sandeshraut.official) · [GitHub](https://github.com/sandesh37)
