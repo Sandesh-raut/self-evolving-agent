@@ -1,0 +1,9 @@
+# Core (required)
+# No external dependencies needed for base functionality!
+# All 10 modules run with pure Python fallbacks.
+
+# Enhanced (optional — for HuggingFace model support)
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+numpy>=1.24.0
