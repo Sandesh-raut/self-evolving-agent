@@ -1,28 +1,31 @@
 # Self-Evolving AI Agent
 
-This is the codebase behind my article: [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official).
+A self-evolving multi-agent research swarm that rewrites its own prompts after every failure — built on a from-scratch foundation covering 11 GenAI concepts: tokenization, embeddings, RAG, reasoning, agents, evolution, multi-modal, fine-tuning, and evaluation. Zero required dependencies. Every module produces real benchmarks.
 
-I wanted to go deeper than just importing frameworks. I wanted to understand — at the lowest level — what happens when you give software the ability to rewrite itself. So I built every piece from scratch: tokenizers, vector stores, RAG pipelines, a reasoning engine, and finally a multi-agent swarm where agents mutate their own prompts based on structured failure analysis.
-
-Every module here is runnable. Not slides, not documentation — actual code that produces output, benchmarks, and comparison tables when you run it.
-
-```bash
-python run_all.py
-```
-
-That's it. Zero dependencies needed. 11 modules, 86 benchmarks, under 4 seconds.
+**Read the story behind it:** [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official)
 
 ---
 
-## Why I Built This
+## Why This Exists
 
-After 17+ years across PHP, Rails, Node, Python, and AWS — and after spending serious time with CrewAI, LangGraph, and the HuggingFace ecosystem — I realised frameworks are designed for static agents. You define roles, tools, prompts, and they execute. If something fails, you debug. You tweak. You redeploy.
+I've used CrewAI. I've used LangGraph. They're good at what they promise — role-based orchestration, stateful graphs. But they're designed for static agents. You define roles, tools, prompts, and they execute. If something fails, you debug. You tweak. You redeploy. That's maintenance, not evolution.
 
-That's not evolution. That's maintenance.
+I wanted agents that introspect on their own failure modes and mutate their behaviour. The moment I wanted that, every framework became a constraint. So I stopped importing and started building — from tokenizers all the way up to a swarm where agents rewrite their own system prompts based on structured failure analysis.
 
-I wanted agents that introspect on their own failures and mutate their behaviour. The moment I wanted that, every framework became a constraint. So I built the machinery myself to understand what's actually happening under the hood.
+This repo is the result. Not documentation. Not slides. Code that runs, produces output, and measures itself.
 
-This repo is the result — a ground-up implementation of every major GenAI concept, culminating in a self-evolving agent swarm.
+## What You'll See When You Run This
+
+- **Watch agents mutate their own prompts across 15 evolution cycles** — the mutation engine targets each agent's weakest evaluation axis and proposes a specific prompt rewrite
+- **See the Auditor agent get flagged for rubber-stamping** — the reward-hacking detector catches it agreeing with everything because "consistency" scores well
+- **Track prompt bloat in real time** — the Auditor's prompt grows from 28 tokens to 268 tokens across 14 generations, triggering the distillation step
+- **Compare from-scratch implementations against production tools** — a BPE tokenizer I wrote vs BERT/GPT-2/T5, TF-IDF vs Sentence-Transformers, hand-rolled gradient descent vs PyTorch
+
+```bash
+uv run run_all.py
+```
+
+11 modules, 86 benchmarks, under 4 seconds. Zero dependencies.
 
 ## Architecture
 
@@ -75,21 +78,21 @@ This repo is the result — a ground-up implementation of every major GenAI conc
 ## Quick Start
 
 ```bash
-git clone https://github.com/sandesh37/self-evolving-agent.git
+git clone https://github.com/Sandesh-raut/self-evolving-agent.git
 cd self-evolving-agent
 
-# Run everything — no pip install needed
-python run_all.py
+# Run everything — no install needed
+uv run run_all.py
 
 # Want better embeddings and generation? Install the optional deps
-pip install -r requirements.txt
-python run_all.py
+uv pip install -r requirements.txt
+uv run run_all.py
 
 # Run just the swarm module
-python run_all.py --module 11
+uv run run_all.py --module 11
 
 # Run any single module (1-11)
-python run_all.py --module 9    # just fine-tuning
+uv run run_all.py --module 9    # just fine-tuning
 ```
 
 ## Sample Output
@@ -197,4 +200,6 @@ Python 3.10+. Optional: PyTorch, HuggingFace Transformers (DistilBERT, DistilGPT
 
 **Sandesh Raut** — Tech Lead | GenAI & Platform Engineering | 17+ years across startups and enterprise
 
-[Medium](https://medium.com/@sandeshraut.official) · [GitHub](https://github.com/sandesh37)
+[Medium](https://medium.com/@sandeshraut.official) · [GitHub](https://github.com/Sandesh-raut)
+
+If this was useful, a star helps others find it.
