@@ -4,7 +4,7 @@ A self-evolving multi-agent research swarm that rewrites its own prompts after e
 
 **Read the story behind it:** [I Built a Self-Evolving Agent Swarm That Rewrites Itself After Every Failure](https://medium.com/@sandeshraut.official)
 
-**Read the retrospective analysis:** [A retrospective analysis: Your AI Agent Has a Half-Life](https://medium.com/write-a-catalyst/a-retrospective-analysis-your-ai-agent-has-a-half-life-8983bc2e8192)
+**Read the retrospective analysis:** [Your AI Agent Has a Half-Life](https://medium.com/write-a-catalyst/a-retrospective-analysis-your-ai-agent-has-a-half-life-8983bc2e8192)
 
 ---
 
